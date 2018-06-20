@@ -8,6 +8,10 @@ class User:
         self.bio= ""
         self.friends=[]
         self.posts=[]
+        self.userID=""
+        self.createpostID=""
+
+        
 
     def viewFriends(self, friends):
         for people in friends:
@@ -24,9 +28,7 @@ class User:
         
     def addFriend(self,something):
         self.friends.append(something)
-        
-    def addposts(self,posts):
-        self.posts.append(posts)
+   
 
     def unFriend(self,yoda):
         for friend in self.friends:
@@ -38,33 +40,103 @@ class User:
     def viewNewsFeed(self,friends):
         for friend in self.friends:
             print(friend.posts)
+        
+
+##    def createPostID(self,num):
+##        self.postID=len(self.posts)
+
+
+    def createPost(self,content):
+        mypost=post(content)
+        self.posts.append(mypost)
+        mypost.createPostID(len(self.posts))
+
+    def createUserID(self,num):
+        self.usersID=num
+
+
+
+
+class post:
+    def __init__(self,content):
+        self.content=content
+        self.postID=""
+        self.comments=[]
+
+
+    def createPostID(self,num):
+        self.postID=num
+        
+    def createComent(self,comment):
+        self.comments.append(comment)
+
+
+
+
+
+class Network:
+    def __init__(self):
+        self.users=[]
+
+
+    def createuser(self,username):
+        myUser = User(username)
+        self.users.append(myUser)
+        myUser.createUserID(len(self.users))
+        print ("*New User Created*")
+
+    def getUserID(self,username):
+        for b in self.users:
+            if b.username == username:
+                return b.userID
+
+    def reciveOBJ(self,username):
+        userID=self.getUserID(username)
+        userOBJ = self.useres[userID-]
+        return userOBJ
+
+    def connect(self,user1,user2,user3):
+        user1OBJ=self.getOBJ(user1)
+        user2OBJ=self.getOBJ(user2)
+        user3OBJ=self.getOBJ(user3)
+
+        user1OBJ.addfriend(user2OBJ)
+        user1OBJ.addfriend(user3OBJ)
+        
+
+        
+
+
 
 
 
 if __name__ == "__main__":
-     username = "WLP(L)DAvila"
+    network=Network()
+    network.createuser("Fernando")
+    network.createuser("Bob")
+    network.createuser("MrSharp")
     
 
 
-     Fernando = User(username)
-     Bob = User("BobTheBuilder")
-     MrSharp = User("Genius")
+
      
-##     print(Fernando.username)
-##     print(Bob.username)
-##     print(MrSharp.username)
+##     Fernando.addFriend(Bob)
+##     Fernando.addFriend(MrSharp)
+##     
+##     Fernando.createPost("Llama")
+##     MrSharp.createPost("text")
+##     Bob.createPost("Yes We Can!")
      
-     Fernando.addFriend(Bob)
-     Fernando.addFriend(MrSharp)
-     
-     Fernando.addposts("Llama")
-     MrSharp.addposts("text")
-     Bob.addposts("Yes We Can!")
-     
-     Fernando.viewFriends(Fernando.friends)
-     Fernando.viewNewsFeed(Fernando.friends)
-     Fernando.unFriend(Bob)
-     Fernando.viewFriends(Fernando.friends)
+##     Fernando.viewFriends(Fernando.friends)
+##     Fernando.viewNewsFeed(Fernando.friends)
+##     Fernando.unFriend(Bob)
+##     Fernando.viewFriends(Fernando.friends)
+
+
+
+
+
+
 ##     Fernando.addposts()
 ##     print (Fernando.posts)
 ##     print (MrSharp.posts)
